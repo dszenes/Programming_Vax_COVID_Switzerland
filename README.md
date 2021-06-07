@@ -7,6 +7,7 @@ Tasks:
 # Create 2 classes, BLA (Base logistique de l'armée et) and Canton
 
 -BLA: program received doses feature and distribute doses action
+
 -Canton features: Population, Priority population(2 or 3 categories, perhaps using only age distributions), doses received, doses used(maybe divide into 1st and 2nd doses), usage function(if we limit simulation time we can maybe consider this to be linear until saturation rate) 
 
 # Program rounds/interaction
