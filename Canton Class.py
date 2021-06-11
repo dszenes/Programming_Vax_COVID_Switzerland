@@ -8,7 +8,7 @@ Cantons = []
 
 nat_rates = [2.18, 1.65, 0.62, 4.43, 5.65, 1.83, 1.83, 2.65, 5.09, 7.17, 1.36, 10.12, 13.19 ]
 
-for dose in nat_rates:
+for dose in nat_r ates:
     nat_doses = []
     nat_doses.append(round((swiss_pop*dose)/100))
 

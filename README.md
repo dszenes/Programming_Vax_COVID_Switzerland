@@ -28,3 +28,19 @@ Tasks:
 - Simulate the process for 12 weeks (March-May) with both of our automatic models
 
 -Write about the results in terms of efficiency, limitations of the paramters we use, how to add complexity to the model, and how it might interact wiht epidemiological elements
+
+# Intereactive intefrace (terminal)
+
+1. There should be some text that appears at the beginning of the game
+
+2. At each round:
+   
+- print the number of received doses
+
+- Print information about the cantons
+
+- Ask for input: either a function that is applied on the whole list or a manual mode
+
+- Once the round is over move to the next one
+
+- Ideally, after prefixed number of rounds is completed print that the game is over and tell the player the final results 
