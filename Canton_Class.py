@@ -8,15 +8,15 @@ Cantons = []
 
 nat_rates = [2.18, 1.65, 0.62, 4.43, 5.65, 1.83, 1.83, 2.65, 5.09, 7.17, 1.36, 10.12, 13.19 ]
 
-for dose in nat_r ates:
+for dose in nat_rates:
     nat_doses = []
     nat_doses.append(round((swiss_pop*dose)/100))
 
 class Canton:
-    def __init__(self,name, pop, usage, init_vstock, init_used_doses):
+    def __init__(self,name, pop, base_usage, init_vstock, init_used_doses):
         self.name = name
         self.pop = pop
-        self.usage = usage
+        self.base_usage = base_usage
         self.vstock = init_vstock
         self.used_doses = init_used_doses
 
@@ -27,6 +27,10 @@ class Canton:
     def use(self):
         self.vstock -= self.usage*self.vstock
         self.used_doses += self.usage*self.vstock
+
+    def __str__(self):
+        s = '%s \n Population: %s \n base usage: %s\n vaccine stock: %s\n used doses: %s' % (self.name, self.pop, self.base_usage, self.vstock, self.used_doses)
+        return s
 
 
 def equi_distr(cantons, round):
