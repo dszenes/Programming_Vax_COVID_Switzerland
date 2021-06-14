@@ -57,7 +57,7 @@ for canton in cantons:
 
 equi_distr(cantons, 0)
 
-print(cantons)
+print(ch_end_df[ 'usage_rate'].iloc[-1])
 
 
 

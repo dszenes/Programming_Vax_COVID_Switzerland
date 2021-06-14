@@ -30,7 +30,7 @@ class Canton:
 
     def use(self, doses):
         self.base_usage = self.base_usage+(1-self.base_usage)*per_round_change
-        self.used_doses += round((self.base_usage*(1+self.stdev)**((self.init_vstock/6)-doses))*doses)
+        self.used_doses += round(self.base_usage*doses)
 
     def __str__(self):
         s = '%s \n Population: %s \n base usage: %s\n received doses: %s\n used doses: %s' % (self.name, self.pop, self.base_usage, self.vstock, self.used_doses)
