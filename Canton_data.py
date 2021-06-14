@@ -28,7 +28,7 @@ for i in range(len(canton_names)):
     temp_df = temp_df[[ 'usage_rate']]
     temp_df = temp_df.loc[temp_df.index < '2021-03-01']
     temp_df.plot()
-    plt.title(f' Usage rate in {canton_names[i]} fromn start of campaign to March 1st')
+    plt.title(f' Usage rate in {canton_names[i]} from start of campaign to March 1st')
     plt.show()
     plt.close()
     print(canton_names[i], "mean:", statistics.mean(temp_df[ 'usage_rate']), "max:", max(temp_df[ 'usage_rate']), "standard deviavtion:", statistics.stdev(temp_df[ 'usage_rate']) )
