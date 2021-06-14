@@ -1,3 +1,5 @@
+import statistics
+
 # initialize parameters number of rounds, overall swiss population, and doses receivd
 per_round_change = 0.05460539532403539
 
@@ -20,17 +22,32 @@ class Canton:
         self.pop = pop
         self.stdev =stdev
         self.base_usage = init_base_usage # we will make this basic variable evolve positively by rounds
+        self.init_base_usage = init_base_usage
         self.init_vstock = init_vstock
         self.vstock = init_vstock # initial received doses
         self.used_doses = init_used_doses # initial administered doses
 
 
-    def receive(self, doses):
+    def receive(self, doses, cantons):
         self.vstock += round(doses)
+        if self.pop < self.vstock:
+            print('More doses given than needed to', self.name)
+            for i, val in enumerate(cantons):
+                if val.name == self.name:
+                    del cantons[i]
+            print(self.name, 'removed from list')
 
     def use(self, doses):
-        self.base_usage = self.base_usage+(1-self.base_usage)*per_round_change
-        self.used_doses += round(self.base_usage*doses)
+        self.base_usage += (1-self.init_base_usage)*per_round_change
+        if self.used_doses < (self.pop/2):
+            self.used_doses += round(self.base_usage*doses)
+        else:
+            self.used_doses += round(self.base_usage/2*doses)
+
+
+
+
+
 
     def __str__(self):
         s = '%s \n Population: %s \n base usage: %s\n received doses: %s\n used doses: %s' % (self.name, self.pop, self.base_usage, self.vstock, self.used_doses)
@@ -40,7 +57,7 @@ class Canton:
 def equi_distr(cantons, round):
     for canton in cantons:
         cdoses = nat_doses[round]*(canton.pop/swiss_pop)
-        canton.receive(cdoses)
+        canton.receive(cdoses, cantons)
         canton.use(cdoses)
 
 def opti_distr(cantons, round, min_rate, max_rate):
@@ -63,7 +80,6 @@ def opti_distr(cantons, round, min_rate, max_rate):
 
 
 
-print(nat_doses)
 
 
 
