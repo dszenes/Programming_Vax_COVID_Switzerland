@@ -16,19 +16,28 @@ total = 0
 def choice():
     for i in range(len(nat_doses)):
         if mode_name.get() == 'manual':
+            available_doses = nat_doses[i]
             for canton in cantons:
                 print(canton)
+                print('Available doses:', available_doses)
                 number = float(input('Please, enter a rate = '))
                 doses = number * nat_doses[i] * (canton.pop/swiss_pop)
-                canton.receive(doses)
-                canton.use(doses)
-                print(canton)
+                if doses > available_doses:
+                    print("All doses consumed for this round")
+                    canton.receive(available_doses, cantons)
+                    canton.use(available_doses)
+                    print(canton)
+                    break
+                else:
+                    available_doses -= doses
+                    canton.receive(doses, cantons)
+                    canton.use(doses)
+                    print(canton)
 
         elif mode_name.get() == 'equity':
             equi_distr(cantons, i)
             for canton in cantons:
                 print(canton)
-    mode_name.delete(0, END)
 
 # Create a frame
 frame = Frame(window, bg='#41B77F')
